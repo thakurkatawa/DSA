@@ -2,21 +2,29 @@ class Solution {
     public List<String> removeAnagrams(String[] words) {
 
         List<String> ans = new ArrayList<>();
-        ans.add(words[0]);
+        String previous = "";
 
-        for (int i = 1; i < words.length; i++) {
+        for (String word : words) {
 
-            char[] a = ans.get(ans.size() - 1).toCharArray();
-            char[] b = words[i].toCharArray();
+            String current = getSignature(word);
 
-            Arrays.sort(a);
-            Arrays.sort(b);
-
-            if (!Arrays.equals(a, b)) {
-                ans.add(words[i]);
+            if (!current.equals(previous)) {
+                ans.add(word);
+                previous = current;
             }
         }
 
         return ans;
+    }
+
+    private String getSignature(String word) {
+
+        int[] freq = new int[26];
+
+        for (char c : word.toCharArray()) {
+            freq[c - 'a']++;
+        }
+
+        return Arrays.toString(freq);
     }
 }
