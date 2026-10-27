@@ -11,10 +11,9 @@ class Solution {
             start *= 10;
         }
 
-        // Find the actual number
+       
         long number = start + (n - 1) / digits;
 
-        // Find the digit's position
         String s = String.valueOf(number);
         int index = (int) ((n - 1) % digits);
 
